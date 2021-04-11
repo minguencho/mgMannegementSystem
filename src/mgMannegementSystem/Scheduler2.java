@@ -3,6 +3,10 @@ package mgMannegementSystem;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+import Event.Assignment;
+import Event.Course;
+import Event.Event;
+
 public class Scheduler2 {
 	ArrayList<Event> event = new ArrayList<Event>();
 	Scanner input;
@@ -12,22 +16,33 @@ public class Scheduler2 {
 		
 	}
 	public void addEvent() {
-		Event events = new Event();
+		int kind = 0;
 		
-		System.out.println("event number");
-		events.eventnum = input.nextInt();
-
-		System.out.println("eventdate : ");
-		events.eventdate = input.next();
-
-		System.out.println("eventname : ");
-		events.eventname = input.next();
+		Event events;
+		
+		while(kind != 1 && kind != 2) {
+		System.out.println("Select Event kind : ");
+		System.out.println("1 for Assignment ");
+		System.out.println("2 for Course ");
+		System.out.println("Select num for Event kind between 1 and 2 : ");
+		kind = input.nextInt();
+		if (kind == 1) {
+			events = new Assignment();
+			events.getuserinput(input);
+			event.add(events);
+			break;
+		}
+		else if (kind == 2) {
+			events = new Course();
+			events.getuserinput(input);
+			event.add(events);
+			break;
+		}
+		else {
+			System.out.println("Select num for Event kind between 1 and 2: ");
+			}
+		}
 	
-		System.out.println("event contents : ");
-		events.eventcontent = input.next();
-		
-		event.add(events);
-
 	}
 	
 	public void deleteEvent() {
@@ -35,7 +50,7 @@ public class Scheduler2 {
 		int eventnum = input.nextInt();
 		int index = -1;
 		for (int i =0; i<event.size();i++) {
-			if (event.get(i).eventnum == eventnum) {
+			if (event.get(i).getEventnum() == eventnum) {
 				index = i;
 				break;
 			}
@@ -43,7 +58,7 @@ public class Scheduler2 {
 		
 		if(index >= 0) {
 			event.remove(index);
-			Event.numEventsregistered--;
+			
 			System.out.println("event "+eventnum+" is deleted");
 		}
 		else {
@@ -57,7 +72,7 @@ public class Scheduler2 {
 		int eventnum = input.nextInt();
 		for (int i = 0; i<event.size();i++) {
 			Event events = event.get(i);
-			if(events.eventnum == eventnum) {
+			if(events.getEventnum() == eventnum) {
 				int num = -1;
 				System.out.print("EDIT : 1.Event date 2.Event name 3. Event content ");
 				while (num < 4) {
@@ -67,18 +82,18 @@ public class Scheduler2 {
 					if(num ==1) {
 						
 						System.out.print("Event date");
-						events.eventdate = input.next();
-					
+						String eventdate = input.next();
+						events.setEventdate(eventdate);
 					}
 					else if(num ==2) {
 						System.out.print("Event name");
-						events.eventname = input.next();
-						
+						String eventname = input.next();
+						events.setEventname(eventname);
 					}
 					else if(num ==3) {
 						System.out.print("Event content");
-						events.eventcontent = input.next();
-						
+						String eventcontent = input.next();
+						events.setEventcontent(eventcontent);
 					}	
 					else if(num >=4 ) {
 						break;
@@ -92,7 +107,6 @@ public class Scheduler2 {
 		}
 	}
 	public void viewEvent() {
-		System.out.println("registered events : " + Event.numEventsregistered + " ");
 		for (int i=0; i < event.size(); i++){
 			event.get(i).printInfo();
 		}
