@@ -3,21 +3,23 @@ package Event;
 import java.util.Scanner;
 
 public class Course extends Event {
+	protected String time;
+	public Course(Eventskind kind) {
+		super(kind);
+	}
+	
 	public void getuserinput(Scanner input){
 
 		System.out.println("event number");
 		int eventnum = input.nextInt();
 		this.setEventnum(eventnum);
-		
-		
-		String time;
-
-		System.out.print("when does the course start and end?");
-		time = input.next();
 
 		System.out.println("eventdate : ");
 		String eventdate = input.next();
-		this.setEventdate(eventdate +" ["+ time + "] " );
+		this.setEventdate(eventdate);
+		
+		System.out.print("when does the course start and end?");
+		time = input.next();
 		
 		
 		
@@ -32,4 +34,22 @@ public class Course extends Event {
 		this.setEventcontent(eventcontent);
 
 	}
+	public void printInfo() {
+		String skind ="none";
+		switch(this.kind) {
+		case Assignment :
+			skind = "assignment ";
+			break;
+		case Course :
+			skind = "course";
+			break;
+		case Meeting :
+			skind = "meeting";
+			break; 
+		default : 
+			
+		}
+		System.out.println("Eventkind : "+ skind + "Eventnumber : "+ eventnum + " Name : " + eventname + " Date : " + eventdate + " Time : "+ time + "Content : " + eventcontent );
+	}
 }
+
