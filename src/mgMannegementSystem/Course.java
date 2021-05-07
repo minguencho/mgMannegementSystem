@@ -2,7 +2,7 @@ package Event;
 
 import java.util.Scanner;
 
-public class Course extends Event {
+public class Course extends Event implements EventInput {
 	protected String time;
 	public Course(Eventskind kind) {
 		super(kind);
@@ -52,4 +52,3 @@ public class Course extends Event {
 		System.out.println("Eventkind : "+ skind + "Eventnumber : "+ eventnum + " Name : " + eventname + " Date : " + eventdate + " Time : "+ time + "Content : " + eventcontent );
 	}
 }
-
