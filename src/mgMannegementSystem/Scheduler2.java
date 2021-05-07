@@ -6,9 +6,12 @@ import java.util.Scanner;
 import Event.Assignment;
 import Event.Course;
 import Event.Event;
+import Event.EventInput;
+import Event.Eventskind;
+import Event.Meeting;
 
 public class Scheduler2 {
-	ArrayList<Event> event = new ArrayList<Event>();
+	ArrayList<EventInput> event = new ArrayList<EventInput>();
 	Scanner input;
 	
 	Scheduler2(Scanner input){
@@ -18,28 +21,38 @@ public class Scheduler2 {
 	public void addEvent() {
 		int kind = 0;
 		
-		Event events;
+		EventInput eventsInput;
 		
 		while(kind != 1 && kind != 2) {
 		System.out.println("Select Event kind : ");
 		System.out.println("1 for Assignment ");
 		System.out.println("2 for Course ");
-		System.out.println("Select num for Event kind between 1 and 2 : ");
+		System.out.println("3 for Meeting ");
+		System.out.println("Select num 1,2 or 3 for Event kind : ");
 		kind = input.nextInt();
 		if (kind == 1) {
-			events = new Assignment();
-			events.getuserinput(input);
-			event.add(events);
+			eventsInput = new Assignment(Eventskind.Assignment);
+			eventsInput.getuserinput(input);
+			event.add(eventsInput);
 			break;
 		}
 		else if (kind == 2) {
-			events = new Course();
-			events.getuserinput(input);
-			event.add(events);
+			eventsInput = new Course(Eventskind.Course);
+			eventsInput.getuserinput(input);
+			event.add(eventsInput);
 			break;
+		
 		}
+		else if (kind == 3) {
+			eventsInput = new Meeting(Eventskind.Meeting);
+			eventsInput.getuserinput(input);
+			event.add(eventsInput);
+			break;
+		
+		}
+		
 		else {
-			System.out.println("Select num for Event kind between 1 and 2: ");
+			System.out.println("Select num 1,2 or 3 for Event kind : ");
 			}
 		}
 	
@@ -71,10 +84,11 @@ public class Scheduler2 {
 		System.out.print("Event Number : ");
 		int eventnum = input.nextInt();
 		for (int i = 0; i<event.size();i++) {
-			Event events = event.get(i);
-			if(events.getEventnum() == eventnum) {
+			EventInput eventsInput = event.get(i);
+			if(eventsInput.getEventnum() == eventnum) {
 				int num = -1;
 				System.out.print("EDIT : 1.Event date 2.Event name 3. Event content ");
+				
 				while (num < 4) {
 				
 					num = input.nextInt();
@@ -83,17 +97,17 @@ public class Scheduler2 {
 						
 						System.out.print("Event date");
 						String eventdate = input.next();
-						events.setEventdate(eventdate);
+						eventsInput.setEventdate(eventdate);
 					}
 					else if(num ==2) {
 						System.out.print("Event name");
 						String eventname = input.next();
-						events.setEventname(eventname);
+						eventsInput.setEventname(eventname);
 					}
 					else if(num ==3) {
 						System.out.print("Event content");
 						String eventcontent = input.next();
-						events.setEventcontent(eventcontent);
+						eventsInput.setEventcontent(eventcontent);
 					}	
 					else if(num >=4 ) {
 						break;
