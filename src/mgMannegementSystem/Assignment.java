@@ -2,7 +2,11 @@ package Event;
 
 import java.util.Scanner;
 
-public class Assignment extends Event {
+public class Assignment extends Event  implements EventInput {
+	
+	public Assignment(Eventskind kind) {
+		super(kind);
+	}
 	
 	public void getuserinput(Scanner input){
 
@@ -22,7 +26,7 @@ public class Assignment extends Event {
 				break;
 			}
 			else if(answer == 'n' || answer == 'N') {
-				System.out.println("eventdate : ");
+				System.out.println("eventdate (assignment): ");
 				String eventdate = input.next();
 				this.setEventdate(eventdate);
 				break;
@@ -40,5 +44,22 @@ public class Assignment extends Event {
 		String eventcontent = input.next();
 		this.setEventcontent(eventcontent);
 
+	}
+	public void printInfo() {
+		String skind ="none";
+		switch(this.kind) {
+		case Assignment :
+			skind = "assignment ";
+			break;
+		case Course :
+			skind = "course";
+			break;
+		case Meeting :
+			skind = "meeting";
+			break; 
+		default : 
+			
+		}
+		System.out.println("Eventkind : "+ skind + "Eventnumber : "+ eventnum + " Name : " + eventname + " Date : " + eventdate  + " Content : " + eventcontent );
 	}
 }
