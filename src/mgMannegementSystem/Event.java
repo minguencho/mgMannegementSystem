@@ -2,12 +2,15 @@ package Event;
 
 import java.util.Scanner;
 
-public abstract class Event {
+import Exception.DeadlineFormatException;
+
+public abstract class Event implements EventInput{
 	protected Eventskind kind = Eventskind.Assignment;
 	protected int eventnum;
 	protected String eventname;
 	protected String eventdate;
 	protected String eventcontent;
+	protected String deadline;
 	
 	public Eventskind getKind() {
 		return kind;
@@ -48,6 +51,16 @@ public abstract class Event {
 	public void setEventcontent(String eventcontent) {
 		this.eventcontent = eventcontent;
 	}
+	public String getdeadline() {
+		return deadline;
+	}
+
+	public void setdeadline(String deadline) throws DeadlineFormatException {
+		if(!deadline.contains("~") && !deadline.equals("")) {			
+			throw new DeadlineFormatException();
+		}
+		this.deadline = deadline;
+	}
 	
 	
 	public Event() {
@@ -79,6 +92,59 @@ public abstract class Event {
 		
 	}
 	
-	public abstract void printInfo();
+	public abstract void printInfo(); 
+
+	public void setDeadline(Scanner input) {
+		String deadline = "";
+		while(!deadline.contains("~")) {
+			System.out.println("deadline : today ~ deadline");
+			deadline = input.next();
+			try {
+				System.out.println("xxxxxxx");
+				this.setdeadline(deadline);
+			}catch(DeadlineFormatException e) {
+				System.out.println("Incorrect deadline format, deadline must contain ' ~ '  ");
+			}
+		}
+	}
+
+	public void setEventNum(Scanner input) { //
+		System.out.print("Event number");
+		int eventnum = input.nextInt();
+		this.setEventnum(eventnum);
+	}
+	
+	public void setEventName(Scanner input) {
+		System.out.print("Event name");
+		String eventname = input.next();
+		this.setEventname(eventname);
+	}
+	public void setEventDate(Scanner input) {
+		System.out.print("Event date");
+		String eventdate = input.next();
+		this.setEventdate(eventdate);
+	}
+	public void setEventContent( Scanner input) {
+		System.out.print("Event content");
+		String eventcontent = input.next();
+		this.setEventcontent(eventcontent);
+	}
+	public String getKindString() {
+		String skind ="none";
+		switch(this.kind) {
+		case Assignment :
+			skind = "assignment ";
+			break;
+		case Course :
+			skind = "course";
+			break;
+		case Meeting :
+			skind = "meeting";
+			break; 
+		default : 
+		}
+		return skind;
+	}
+	
 
 }
