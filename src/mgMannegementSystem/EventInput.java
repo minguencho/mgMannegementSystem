@@ -2,6 +2,8 @@ package Event;
 
 import java.util.Scanner;
 
+import Exception.DeadlineFormatException;
+
 public interface EventInput {
 	public int getEventnum();
 	
@@ -16,5 +18,15 @@ public interface EventInput {
 	public void printInfo();
 	
 	public void getuserinput(Scanner input);
+	
+	public void setEventNum(Scanner input);
+	
+	public void setEventDate(Scanner input);
+	
+	public void setEventName(Scanner input);
+
+	public void setEventContent(Scanner input);
+	
+	public void setdeadline(String deadline) throws DeadlineFormatException;
 	
 }
