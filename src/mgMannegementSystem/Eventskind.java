@@ -2,5 +2,6 @@ package Event;
 
 public enum Eventskind {
 	Assignment,
-	Course;
+	Course,
+	Meeting;
 }
