@@ -1,19 +1,24 @@
 package mgMannegementSystem;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
 import Event.Assignment;
 import Event.Course;
-import Event.Event;
 import Event.EventInput;
 import Event.Eventskind;
 import Event.Meeting;
 
-public class Scheduler2 {
+public class Scheduler2 implements Serializable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -5816230158685592568L;
+	
 	ArrayList<EventInput> events = new ArrayList<EventInput>();
-	Scanner input;
+	transient Scanner input;
 
 	Scheduler2(Scanner input){
 		this.input = input;
