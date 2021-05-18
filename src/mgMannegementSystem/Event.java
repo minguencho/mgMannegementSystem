@@ -1,10 +1,16 @@
 package Event;
 
+import java.io.Serializable;
 import java.util.Scanner;
 
 import Exception.DeadlineFormatException;
 
-public abstract class Event implements EventInput{
+public abstract class Event implements EventInput,Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -7943298395779328366L;
+	
 	protected Eventskind kind = Eventskind.Assignment;
 	protected int eventnum;
 	protected String eventname;
@@ -100,7 +106,6 @@ public abstract class Event implements EventInput{
 			System.out.println("deadline : today ~ deadline");
 			deadline = input.next();
 			try {
-				System.out.println("xxxxxxx");
 				this.setdeadline(deadline);
 			}catch(DeadlineFormatException e) {
 				System.out.println("Incorrect deadline format, deadline must contain ' ~ '  ");
