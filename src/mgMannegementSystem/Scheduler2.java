@@ -7,6 +7,7 @@ import java.util.Scanner;
 
 import Event.Assignment;
 import Event.Course;
+import Event.Event;
 import Event.EventInput;
 import Event.Eventskind;
 import Event.Meeting;
@@ -22,13 +23,10 @@ public class Scheduler2 implements Serializable {
 
 	Scheduler2(Scanner input){
 		this.input = input;
-
 	}
 	public void addEvent() {
 		int kind = 0;
-
 		EventInput eventsInput;
-
 		while(kind < 1 || kind > 3) {
 			try {
 				System.out.println("Select Event kind : ");
@@ -140,6 +138,15 @@ public class Scheduler2 implements Serializable {
 			events.get(i).printInfo();
 		}
 	}
-	
+	public int size() {
+		return events.size();
+	}
+	public EventInput get(int index) {
+		return (Event) events.get(index);
+	}
+	public void setScanner(Scanner input2) {
+		this.input = input2;
+		
+	}
 	
 }
