@@ -11,9 +11,15 @@ public interface EventInput {
 	
 	public void setEventname(String eventname);
 	
+	public String getEventname();
+	
 	public void setEventdate(String eventdate);
 	
+	public String getEventdate();
+	
 	public void setEventcontent(String eventcontent);
+	
+	public String getEventcontent();
 	
 	public void printInfo();
 	
@@ -29,4 +35,5 @@ public interface EventInput {
 	
 	public void setdeadline(String deadline) throws DeadlineFormatException;
 	
+	public String getdeadline();
 }
