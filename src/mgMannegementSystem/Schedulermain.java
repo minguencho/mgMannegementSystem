@@ -7,19 +7,23 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.InputMismatchException;
 import java.util.Scanner;
+
+import GUI.WindowFrame;
 import log.EventLogger;
 
 public class Schedulermain {
 	static EventLogger logger = new EventLogger("log.txt");
 	public static void main(String[] args) {
-		
-
 		Scanner input = new Scanner(System.in);
 		Scheduler2 scheduler = getObject("eventmanager.ser");
 		if(scheduler == null) {
 			scheduler = new Scheduler2(input);
 		}
-
+		else {
+			//scheduler = new Scheduler2(input);
+			scheduler.setScanner(input);
+		}
+		WindowFrame frame = new WindowFrame(scheduler);
 		selectMenu(input,scheduler);
 		putObject(scheduler,"eventmanager.ser");
 	}
@@ -71,8 +75,6 @@ public class Schedulermain {
 	}
 	public static Scheduler2 getObject(String filename) {
 		Scheduler2 scheduler = null;
-		
-	
 		try {
 			FileInputStream file = new FileInputStream(filename);
 			
@@ -97,9 +99,7 @@ public class Schedulermain {
 		
 		try {
 			FileOutputStream file = new FileOutputStream(filename);
-			
 			ObjectOutputStream out = new ObjectOutputStream(file);
-			
 			out.writeObject(scheduler);
 			
 			out.close();
@@ -113,5 +113,4 @@ public class Schedulermain {
 		}
 	}
 }
-
 
