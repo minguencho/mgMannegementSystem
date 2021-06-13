@@ -150,6 +150,5 @@ public abstract class Event implements EventInput,Serializable{
 		}
 		return skind;
 	}
-	
 
 }
