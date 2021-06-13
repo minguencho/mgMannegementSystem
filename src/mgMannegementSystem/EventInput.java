@@ -5,6 +5,9 @@ import java.util.Scanner;
 import Exception.DeadlineFormatException;
 
 public interface EventInput {
+	
+	public void getuserinput(Scanner input);
+	
 	public int getEventnum();
 	
 	public void setEventnum(int eventnum);
@@ -23,7 +26,7 @@ public interface EventInput {
 	
 	public void printInfo();
 	
-	public void getuserinput(Scanner input);
+
 	
 	public void setEventNum(Scanner input);
 	
