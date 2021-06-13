@@ -2,7 +2,7 @@ package Event;
 
 import java.util.Scanner;
 
-public class Meeting extends Event{
+public class Meeting extends Event implements EventInput{
 	protected String place;
 
 	public Meeting(Eventskind kind) {
