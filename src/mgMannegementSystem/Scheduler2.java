@@ -19,15 +19,24 @@ public class Scheduler2 implements Serializable {
 	private static final long serialVersionUID = -5816230158685592568L;
 	
 	ArrayList<EventInput> events = new ArrayList<EventInput>();
+	Event event;
 	transient Scanner input;
 
 	Scheduler2(Scanner input){
 		this.input = input;
 	}
+	public void addEvent(String Number , String Name,  String Date, String Content) {
+		EventInput eventsInput = new Assignment(Eventskind.Assignment);
+		eventsInput.getuserinput(input);
+		events.add(eventsInput);
+	}
+	public void addEvent(EventInput eventInput) {
+		events.add(eventInput);
+	}
 	public void addEvent() {
 		int kind = 0;
 		EventInput eventsInput;
-		while(kind < 1 || kind > 3) {
+		while(true) {
 			try {
 				System.out.println("Select Event kind : ");
 				System.out.println("1 for Assignment ");
@@ -65,7 +74,7 @@ public class Scheduler2 implements Serializable {
 				if(input.hasNext()) {
 					input.next();
 				}
-				kind = -1;
+				kind = 0;
 			}	
 		}
 	}
@@ -144,9 +153,4 @@ public class Scheduler2 implements Serializable {
 	public EventInput get(int index) {
 		return (Event) events.get(index);
 	}
-	public void setScanner(Scanner input2) {
-		this.input = input2;
-		
-	}
-	
 }
