@@ -14,14 +14,11 @@ import log.EventLogger;
 public class Schedulermain {
 	static EventLogger logger = new EventLogger("log.txt");
 	public static void main(String[] args) {
+		
 		Scanner input = new Scanner(System.in);
 		Scheduler2 scheduler = getObject("eventmanager.ser");
 		if(scheduler == null) {
 			scheduler = new Scheduler2(input);
-		}
-		else {
-			//scheduler = new Scheduler2(input);
-			scheduler.setScanner(input);
 		}
 		WindowFrame frame = new WindowFrame(scheduler);
 		selectMenu(input,scheduler);
@@ -80,7 +77,7 @@ public class Schedulermain {
 			
 			ObjectInputStream in = new ObjectInputStream(file);
 			
-			scheduler = (Scheduler2)in.readObject();
+			scheduler = (Scheduler2) in.readObject();
 			
 			in.close();
 			file.close();
@@ -95,13 +92,13 @@ public class Schedulermain {
 		}
 		return scheduler;
 	}
+	
 	public static void putObject(Scheduler2 scheduler, String filename) {
 		
 		try {
 			FileOutputStream file = new FileOutputStream(filename);
 			ObjectOutputStream out = new ObjectOutputStream(file);
 			out.writeObject(scheduler);
-			
 			out.close();
 			file.close();
 		} catch (FileNotFoundException e) {
@@ -113,4 +110,5 @@ public class Schedulermain {
 		}
 	}
 }
+
 
