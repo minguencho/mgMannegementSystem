@@ -2,9 +2,7 @@ package Event;
 
 import java.util.Scanner;
 
-import Exception.DeadlineFormatException;
-
-public class Assignment extends Event{
+public class Assignment extends Event implements EventInput{
 	
 	public Assignment(Eventskind kind) {
 		super(kind);
@@ -41,4 +39,3 @@ public class Assignment extends Event{
 		System.out.println("Eventkind : "+ skind + "Eventnumber : "+ eventnum + " Name : " + eventname +"Date : " + eventdate + " Deadline : "+ deadline + " Content : " + eventcontent );
 	}
 }
-
