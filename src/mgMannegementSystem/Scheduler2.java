@@ -33,7 +33,7 @@ public class Scheduler2 implements Serializable {
 	public void addEvent(EventInput eventInput) {
 		events.add(eventInput);
 	}
-	public void addEvent() {
+	public void addEvent(Scanner input) {
 		int kind = 0;
 		EventInput eventsInput;
 		while(true) {
