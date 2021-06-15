@@ -33,7 +33,7 @@ public class Schedulermain {
 				num = input.nextInt();
 				switch(num) {
 				case 1 :
-					scheduler.addEvent();
+					scheduler.addEvent(input);
 					logger.log("add a event");
 					break;
 				case 2 :
